@@ -7,8 +7,11 @@ const app = express();
 // Connect database
 connectDB();
 
+// Init Middleware
+app.use(express.json({ extended: false }));
+
 // Define routes
-app.get('/', (req, res) => res.send('API running'));
+app.use('/api/users', require('./routes/api/users'));
 
 const PORT = process.env.PORT || 5000;
 
