@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
+
 import LoginModal from '../modals/LoginModal';
 import RegisterModal from '../modals/RegisterModal';
 
-const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated }, logout }) => {
+  const authLinks = (
+    <a onClick={logout} href='#!' className='text-white'>
+      <i className='material-icons'>exit_to_app</i>
+    </a>
+  );
+
+  const guestLinks = (
+    <Fragment>
+      <LoginModal />
+      <RegisterModal />
+    </Fragment>
+  );
+
   return (
     <nav className='navbar fixed-top navbar-expand-lg bg-dark'>
-      <a className='navbar-brand' href='#'>
+      <a className='navbar-brand' href='#!'>
         MERN Forum
       </a>
       <button
@@ -25,23 +42,34 @@ const Navbar = () => {
       <div className='collapse navbar-collapse' id='navbarNav'>
         <ul className='navbar-nav'>
           <li className='nav-item active'>
-            <a className='nav-link' href='#'>
+            <a className='nav-link' href='#!'>
               Forum <span className='sr-only'>(current)</span>
             </a>
           </li>
           <li className='nav-item'>
-            <a className='nav-link' href='#'>
+            <a className='nav-link' href='#!'>
               Membres
             </a>
           </li>
         </ul>
       </div>
       <div className='ml-auto'>
-        <LoginModal />
-        <RegisterModal />
+        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Navbar);
