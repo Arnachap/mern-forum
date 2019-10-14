@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { CardBody } from 'reactstrap';
 
-const Register = ({ register }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,7 +21,7 @@ const Register = ({ register }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      // Alert
+      setAlert('Mots de passe différents', 'danger');
     } else {
       register({ name, email, password });
     }
@@ -102,7 +103,11 @@ const Register = ({ register }) => {
             </div>
           </div>
 
-          <input type='submit' className='btn btn-success btn-wd btn-lg d-block m-auto' value='Register' />
+          <input
+            type='submit'
+            className='btn btn-success btn-wd btn-lg d-block m-auto'
+            value='Register'
+          />
         </CardBody>
       </form>
     </Fragment>
@@ -110,10 +115,11 @@ const Register = ({ register }) => {
 };
 
 Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { register }
+  { setAlert, register }
 )(Register);

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 // Components
+import Alerts from './components/layout/Alerts';
 import Navbar from './components/layout/Navbar';
 import Forums from './components/pages/Forums';
 
@@ -27,6 +28,7 @@ const App = () => {
         <Fragment>
           <Navbar />
           <main>
+            <Alerts />
             <Route exact path='/' component={Forums} />
           </main>
         </Fragment>
