@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
-import { CardBody } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
@@ -29,87 +29,55 @@ const Register = ({ setAlert, register }) => {
 
   return (
     <Fragment>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <CardBody className='card-body'>
-          <div class='form-group has-success'>
-            <div class='input-group'>
-              <div class='input-group-prepend'>
-                <div class='input-group-text'>
-                  <i class='material-icons'>face</i>
-                </div>
-              </div>
-              <input
-                type='text'
-                class='form-control'
-                placeholder='Pseudo...'
-                name='name'
-                value={name}
-                onChange={e => onChange(e)}
-              />
-            </div>
-          </div>
-
-          <div className='form-group has-success'>
-            <div className='input-group'>
-              <div className='input-group-prepend'>
-                <div className='input-group-text'>
-                  <i className='material-icons'>email</i>
-                </div>
-              </div>
-              <input
-                type='email'
-                className='form-control'
-                placeholder='Email...'
-                name='email'
-                value={email}
-                onChange={e => onChange(e)}
-              />
-            </div>
-          </div>
-
-          <div className='form-group has-success'>
-            <div className='input-group'>
-              <div className='input-group-prepend'>
-                <div className='input-group-text'>
-                  <i className='material-icons'>lock_outline</i>
-                </div>
-              </div>
-              <input
-                type='password'
-                placeholder='Mot de passe...'
-                className='form-control'
-                name='password'
-                value={password}
-                onChange={e => onChange(e)}
-              />
-            </div>
-          </div>
-
-          <div className='form-group has-success'>
-            <div className='input-group'>
-              <div className='input-group-prepend'>
-                <div className='input-group-text'>
-                  <i className='material-icons'>lock_outline</i>
-                </div>
-              </div>
-              <input
-                type='password'
-                placeholder='Confirmez mot de passe...'
-                className='form-control'
-                name='password2'
-                value={password2}
-                onChange={e => onChange(e)}
-              />
-            </div>
-          </div>
-
-          <input
-            type='submit'
-            className='btn btn-success btn-wd btn-lg d-block m-auto'
-            value='Register'
+      <Form onSubmit={e => onSubmit(e)}>
+        <FormGroup>
+          <Input
+            type='text'
+            class='form-control'
+            placeholder='Pseudo...'
+            name='name'
+            value={name}
+            onChange={e => onChange(e)}
           />
-        </CardBody>
-      </form>
+        </FormGroup>
+
+        <FormGroup>
+          <Input
+            type='email'
+            className='form-control'
+            placeholder='Email...'
+            name='email'
+            value={email}
+            onChange={e => onChange(e)}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Input
+            type='password'
+            placeholder='Mot de passe...'
+            className='form-control'
+            name='password'
+            value={password}
+            onChange={e => onChange(e)}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Input
+            type='password'
+            placeholder='Confirmez mot de passe...'
+            className='form-control'
+            name='password2'
+            value={password2}
+            onChange={e => onChange(e)}
+          />
+        </FormGroup>
+
+        <Button type='submit' color='success' className='d-block m-auto'>
+          Inscription
+        </Button>
+      </Form>
     </Fragment>
   );
 };

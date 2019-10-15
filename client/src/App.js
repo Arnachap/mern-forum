@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
 
 // Components
 import Alerts from './components/layout/Alerts';
-import Navbar from './components/layout/Navbar';
+import Header from './components/layout/Header';
 import Forums from './components/pages/Forums';
 
 // Redux
@@ -26,7 +25,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
+          <Header />
           <main>
             <Alerts />
             <Route exact path='/' component={Forums} />

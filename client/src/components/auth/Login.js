@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
-import { CardBody } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -28,53 +28,33 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <CardBody className='card-body'>
-          <div className='form-group has-info'>
-            <div className='input-group'>
-              <div className='input-group-prepend'>
-                <div className='input-group-text'>
-                  <i className='material-icons'>email</i>
-                </div>
-              </div>
-              <input
-                type='email'
-                className='form-control'
-                placeholder='Email...'
-                name='email'
-                value={email}
-                onChange={e => onChange(e)}
-                required
-              />
-            </div>
-          </div>
-
-          <div className='form-group has-info'>
-            <div className='input-group'>
-              <div className='input-group-prepend'>
-                <div className='input-group-text'>
-                  <i className='material-icons'>lock_outline</i>
-                </div>
-              </div>
-              <input
-                type='password'
-                placeholder='Mot de passe...'
-                className='form-control'
-                name='password'
-                value={password}
-                onChange={e => onChange(e)}
-                minLength='6'
-              />
-            </div>
-          </div>
-
-          <input
-            type='submit'
-            className='btn btn-info btn-wd btn-lg d-block m-auto'
-            value='Login'
+      <Form onSubmit={e => onSubmit(e)}>
+        <FormGroup>
+          <Input
+            type='email'
+            placeholder='Email...'
+            name='email'
+            value={email}
+            onChange={e => onChange(e)}
+            required
           />
-        </CardBody>
-      </form>
+        </FormGroup>
+
+        <FormGroup>
+          <Input
+            type='password'
+            placeholder='Mot de passe...'
+            name='password'
+            value={password}
+            onChange={e => onChange(e)}
+            minLength='6'
+          />
+        </FormGroup>
+
+        <Button type='submit' color='info' className='d-block m-auto'>
+          Connexion
+        </Button>
+      </Form>
     </Fragment>
   );
 };
