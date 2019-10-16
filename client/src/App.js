@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Alerts from './components/layout/Alerts';
 import Header from './components/layout/Header';
 import Forums from './components/pages/Forums';
+import Breadcrumbs from './components/layout/Breadcrumbs';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -26,7 +27,8 @@ const App = () => {
       <Router>
         <Fragment>
           <Header />
-          <main>
+          <main className='container'>
+            <Breadcrumbs />
             <Alerts />
             <Route exact path='/' component={Forums} />
           </main>
