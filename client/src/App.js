@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Components
 import Alerts from './components/layout/Alerts';
 import Header from './components/layout/Header';
-import Forums from './components/pages/Forums';
+import Forums from './components/forums/Forums';
 import Breadcrumbs from './components/layout/Breadcrumbs';
 
 // Redux
