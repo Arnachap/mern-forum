@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Category from './Category';
+import Forum from './Forum';
 
 const Forums = () => {
   return (
     <div>
       <h2 className='title'>Forums</h2>
 
-      <Category />
+      <Forum />
     </div>
   );
 };

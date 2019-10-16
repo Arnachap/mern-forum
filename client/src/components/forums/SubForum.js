@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CardBody, CardText } from 'reactstrap';
 
-const SubCategory = () => {
+const SubForum = () => {
   return (
     <div>
       <CardBody>
@@ -21,4 +21,4 @@ const SubCategory = () => {
   );
 };
 
-export default SubCategory;
+export default SubForum;

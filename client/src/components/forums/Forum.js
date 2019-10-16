@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { Card, CardHeader } from 'reactstrap';
-import SubCategory from './SubCategory';
+import SubForum from './SubForum';
 
-const Category = () => {
+const Forum = () => {
   return (
     <div>
       <Card>
         <CardHeader>Header</CardHeader>
-        <SubCategory />
+        <SubForum />
       </Card>
     </div>
   );
 };
 
-export default Category;
+export default Forum;
