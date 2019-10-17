@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import { getForums } from '../../actions/forum';
 
 import Forum from './Forum';
+import { Spinner } from 'reactstrap';
 
-const Forums = ({ getForums, forum: { forums } }) => {
+const Forums = ({ getForums, forum: { forums, loading } }) => {
   useEffect(() => {
     getForums();
   }, [getForums]);
 
-  return (
+  return loading ? (
+    <Spinner color='info' className='d-block m-auto' />
+  ) : (
     <div>
       <h2 className='title'>Forums</h2>
 

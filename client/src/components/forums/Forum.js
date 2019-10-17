@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Card, CardHeader, CardBody, CardText } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap';
 
 const Forum = ({ forum: { title, subforums } }) => {
   return (
     <div>
       <Card className='my-3 '>
-        <CardHeader>{title}</CardHeader>
+        <CardHeader className='bg-info text-white'>{title}</CardHeader>
         {subforums.map(subforum => (
           <CardBody>
-            <CardText>{subforum.title}</CardText>
+            <CardTitle>{subforum.title}</CardTitle>
+            <CardText>{subforum.description}</CardText>
           </CardBody>
         ))}
       </Card>
