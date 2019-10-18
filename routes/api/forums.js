@@ -57,4 +57,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route    GET api/forums/:id
+// @desc     Get subforum by id
+// @access   Public
+router.get('/:title/:id', async (req, res) => {
+  try {
+    const forum = await Forum.findOne({ title: req.params.title });
+    const subforum = forum.subforums.find(({ id }) => id === req.params.id);
+
+    res.json(subforum);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

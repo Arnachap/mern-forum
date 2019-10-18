@@ -9,3 +9,4 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_FORUMS = 'GET_FORUMS';
 export const FORUM_ERROR = 'FORUM_ERROR';
+export const GET_FORUM = 'GET_FORUM';

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap';
 
@@ -10,7 +11,11 @@ const Forum = ({ forum: { title, subforums } }) => {
         <CardHeader className='bg-info text-white'>{title}</CardHeader>
         {subforums.map(subforum => (
           <CardBody>
-            <CardTitle>{subforum.title}</CardTitle>
+            <CardTitle>
+              <Link to={`/forums/${title}/${subforum._id}`}>
+                {subforum.title}
+              </Link>
+            </CardTitle>
             <CardText>{subforum.description}</CardText>
           </CardBody>
         ))}
