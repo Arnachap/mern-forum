@@ -70,4 +70,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route    GET api/forums/:id
+// @desc     Get all forums
+// @access   Public
+router.get('/:id', async (req, res) => {
+  try {
+    const forum = await Forum.findById(req.params.id);
+
+    res.json(forum);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

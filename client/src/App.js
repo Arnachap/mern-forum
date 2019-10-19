@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Alerts from './components/layout/Alerts';
 import Header from './components/layout/Header';
 import Forums from './components/forums/Forums';
-//import Subforum from './components/subforum/Subforum';
+import Forum from './components/forum/Forum';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -30,7 +30,7 @@ const App = () => {
           <main className='container'>
             <Alerts />
             <Route exact path='/' component={Forums} />
-            {/* <Route exact path='/forums/:title/:id' component={Subforum} /> */}
+            <Route exact path='/forums/:id' component={Forum} />
           </main>
         </Fragment>
       </Router>
