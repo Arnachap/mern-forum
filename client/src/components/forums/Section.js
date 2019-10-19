@@ -4,19 +4,33 @@ import { Link } from 'react-router-dom';
 
 import { Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap';
 
-const Section = ({ section: { _id, title } }) => {
+const Section = ({ forum: { forums }, section: { _id, title } }) => {
   return (
     <div>
       <Card className='my-3 '>
         <CardHeader className='bg-info text-white'>{title}</CardHeader>
-        {/* {subforums.map(subforum => (
+
+        {forums.map(forum => {
+          if (forum.section === _id)
+            return (
+              <CardBody>
+                <CardTitle>
+                  <Link to={`/forums/${title}/${forum._id}`}>
+                    {forum.title}
+                  </Link>
+                </CardTitle>
+                <CardText>{forum.description}</CardText>
+              </CardBody>
+            );
+        })}
+
+        {/* {forums.map(forum => (
+          
           <CardBody>
             <CardTitle>
-              <Link to={`/forums/${title}/${subforum._id}`}>
-                {subforum.title}
-              </Link>
+              <Link to={`/forums/${title}/${forum._id}`}>{forum.title}</Link>
             </CardTitle>
-            <CardText>{subforum.description}</CardText>
+            <CardText>{forum.description}</CardText>
           </CardBody>
         ))} */}
       </Card>
@@ -25,7 +39,8 @@ const Section = ({ section: { _id, title } }) => {
 };
 
 Section.propTypes = {
-  section: PropTypes.object.isRequired
+  section: PropTypes.object.isRequired,
+  forum: PropTypes.object.isRequired
 };
 
 export default Section;

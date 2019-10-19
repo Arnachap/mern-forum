@@ -56,14 +56,12 @@ router.get('/sections', async (req, res) => {
   }
 });
 
-// @route    GET api/forums/sections/:section_id
-// @desc     Get forums by dection ID
+// @route    GET api/forums
+// @desc     Get all forums
 // @access   Public
-router.get('/:section_id', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const forums = await Forum.find({
-      section: req.params.section_id
-    });
+    const forums = await Forum.find();
 
     res.json(forums);
   } catch (err) {

@@ -2,14 +2,21 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getSections } from '../../actions/section';
+import { getForums } from '../../actions/forum';
 
 import { Spinner } from 'reactstrap';
 import Section from './Section';
 
-const Forums = ({ getSections, section: { sections, loading } }) => {
+const Forums = ({
+  getSections,
+  getForums,
+  forum,
+  section: { sections, loading }
+}) => {
   useEffect(() => {
     getSections();
-  }, [getSections]);
+    getForums();
+  }, [getSections, getForums]);
 
   return loading ? (
     <Spinner color='info' className='d-block m-auto' />
@@ -18,7 +25,7 @@ const Forums = ({ getSections, section: { sections, loading } }) => {
       <h2 className='title'>Forums</h2>
 
       {sections.map(section => (
-        <Section key={section._id} section={section} />
+        <Section key={section._id} section={section} forum={forum} />
       ))}
     </div>
   );
@@ -26,14 +33,16 @@ const Forums = ({ getSections, section: { sections, loading } }) => {
 
 Forums.propTypes = {
   getSections: PropTypes.func.isRequired,
+  getForums: PropTypes.func.isRequired,
   section: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  section: state.section
+  section: state.section,
+  forum: state.forum
 });
 
 export default connect(
   mapStateToProps,
-  { getSections }
+  { getSections, getForums }
 )(Forums);
