@@ -10,3 +10,5 @@ export const LOGOUT = 'LOGOUT';
 export const GET_FORUMS = 'GET_FORUMS';
 export const FORUM_ERROR = 'FORUM_ERROR';
 export const GET_FORUM = 'GET_FORUM';
+export const GET_SECTIONS = 'GET_SECTIONS';
+export const SECTION_ERROR = 'SECTION_ERROR';
