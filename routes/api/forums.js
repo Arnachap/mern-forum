@@ -71,7 +71,7 @@ router.get('/', async (req, res) => {
 });
 
 // @route    GET api/forums/:id
-// @desc     Get all forums
+// @desc     Get forum by ID
 // @access   Public
 router.get('/:id', async (req, res) => {
   try {

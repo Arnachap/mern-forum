@@ -12,3 +12,5 @@ export const FORUM_ERROR = 'FORUM_ERROR';
 export const GET_FORUM = 'GET_FORUM';
 export const GET_SECTIONS = 'GET_SECTIONS';
 export const SECTION_ERROR = 'SECTION_ERROR';
+export const GET_TOPICS = 'GET_TOPICS';
+export const TOPIC_ERROR = 'TOPIC_ERROR';
