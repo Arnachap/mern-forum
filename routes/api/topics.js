@@ -8,7 +8,7 @@ const Forum = require('../../models/Forum');
 
 // @route    POST api/topics/:forum_id
 // @desc     Create a topic with forum ID
-// @access   Public (Will change)
+// @access   Private
 router.post('/:forum_id', auth, async (req, res) => {
   // TODO check if empty inputs
   try {
@@ -32,14 +32,28 @@ router.post('/:forum_id', auth, async (req, res) => {
   }
 });
 
-// @route    GET api/topics/:forum_id
+// @route    GET api/topics/forum/:forum_id
 // @desc     Get all topics by forum ID
 // @access   Public
-router.get('/:forum_id', async (req, res) => {
+router.get('/forum/:forum_id', async (req, res) => {
   try {
     const topics = await Topic.find({ forum: req.params.forum_id });
 
     res.json(topics);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    GET api/topics/:id
+// @desc     Get topic by ID
+// @access   Public
+router.get('/:id', async (req, res) => {
+  try {
+    const topic = await Topic.findById(req.params.id);
+
+    res.json(topic);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

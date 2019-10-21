@@ -2,20 +2,11 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 import { getForum } from '../../actions/forum';
 import { getTopics } from '../../actions/topic';
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  CardText,
-  Spinner,
-  Pagination,
-  PaginationItem,
-  PaginationLink
-} from 'reactstrap';
+import { Card, CardBody, CardText, CardTitle, Spinner } from 'reactstrap';
 
 const Forum = ({
   getForum,
@@ -35,34 +26,15 @@ const Forum = ({
     <Fragment>
       <h2 className='title'>{forum.title}</h2>
       <Card className='my-3 '>
-        <CardHeader className='bg-info text-white'>
-          <Pagination>
-            <PaginationItem>
-              <PaginationLink previous href='#' />
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationLink href='/'>1</PaginationLink>
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationLink href='/'>2</PaginationLink>
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationLink href='/'>3</PaginationLink>
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationLink next href='#' />
-            </PaginationItem>
-          </Pagination>
-        </CardHeader>
         {topics.map(topic => (
           <CardBody>
             <CardTitle>
-              <Link to='/'>{topic.title}</Link>
+              <Link to={`/topic/${topic._id}`}>{topic.title}</Link>
             </CardTitle>
+            <CardText>
+              Posté le <Moment format='DD/MM/YYYY'>{topic.date}</Moment> par{' '}
+              {topic.name}
+            </CardText>
           </CardBody>
         ))}
       </Card>
@@ -74,7 +46,7 @@ Forum.propTypes = {
   getForum: PropTypes.func.isRequired,
   forum: PropTypes.object.isRequired,
   getTopics: PropTypes.func.isRequired,
-  Topic: PropTypes.object.isRequired
+  topic: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

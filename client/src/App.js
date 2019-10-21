@@ -6,6 +6,7 @@ import Alerts from './components/layout/Alerts';
 import Header from './components/layout/Header';
 import Forums from './components/forums/Forums';
 import Forum from './components/forum/Forum';
+import Topic from './components/topic/Topic';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -31,6 +32,7 @@ const App = () => {
             <Alerts />
             <Route exact path='/' component={Forums} />
             <Route exact path='/forums/:id' component={Forum} />
+            <Route exact path='/topic/:id' component={Topic} />
           </main>
         </Fragment>
       </Router>
