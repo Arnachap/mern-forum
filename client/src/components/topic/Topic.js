@@ -26,6 +26,16 @@ const Topic = ({ getTopic, topic: { topic, loading }, match }) => {
           <CardText>{topic.text}</CardText>
         </CardBody>
       </Card>
+
+      {topic.comments.map(comment => {
+        return (
+          <Card>
+            <CardBody>
+              <CardText>{comment.text}</CardText>
+            </CardBody>
+          </Card>
+        );
+      })}
     </Fragment>
   );
 };
