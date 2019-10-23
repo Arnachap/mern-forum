@@ -62,4 +62,29 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// @route    POST api/topics/comment/:id
+// @desc     Get topic by ID
+// @access   Private
+router.post('/comment/:id', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    const topic = await Topic.findById(req.params.id);
+
+    const newComment = {
+      text: req.body.text,
+      name: user.name,
+      user: req.user.id
+    };
+
+    topic.comments.unshift(newComment);
+
+    await topic.save();
+
+    res.json(topic.comments);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

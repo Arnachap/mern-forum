@@ -37,6 +37,8 @@ const AddTopic = ({ addTopic, match, history }) => {
             required
           />
         </FormGroup>
+
+        {/* TODO add wysiwyg -> Froala */}
         <FormGroup>
           <Input
             type='text'

@@ -10,6 +10,7 @@ const Topic = ({ getTopic, topic: { topic, loading }, match }) => {
   useEffect(() => {
     getTopic(match.params.id);
   }, [getTopic]);
+
   return loading || topic === null ? (
     <Spinner color='info' className='d-block m-auto' />
   ) : (
