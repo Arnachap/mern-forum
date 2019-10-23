@@ -15,22 +15,12 @@ const Section = ({ forum: { forums }, section: { _id, title } }) => {
             return (
               <CardBody>
                 <CardTitle>
-                  <Link to={`/forums/${forum._id}`}>{forum.title}</Link>
+                  <Link to={`/forum/${forum._id}`}>{forum.title}</Link>
                 </CardTitle>
                 <CardText>{forum.description}</CardText>
               </CardBody>
             );
         })}
-
-        {/* {forums.map(forum => (
-          
-          <CardBody>
-            <CardTitle>
-              <Link to={`/forums/${title}/${forum._id}`}>{forum.title}</Link>
-            </CardTitle>
-            <CardText>{forum.description}</CardText>
-          </CardBody>
-        ))} */}
       </Card>
     </div>
   );

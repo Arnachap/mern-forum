@@ -6,7 +6,14 @@ import Moment from 'react-moment';
 import { getForum } from '../../actions/forum';
 import { getTopics } from '../../actions/topic';
 
-import { Card, CardBody, CardText, CardTitle, Spinner } from 'reactstrap';
+import {
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
+  Spinner,
+  Button
+} from 'reactstrap';
 
 const Forum = ({
   getForum,
@@ -25,6 +32,11 @@ const Forum = ({
   ) : (
     <Fragment>
       <h2 className='title'>{forum.title}</h2>
+
+      <Link to={`/new-topic/${forum._id}`}>
+        <Button color='success'>Nouveau sujet</Button>
+      </Link>
+
       <Card className='my-3 '>
         {topics.map(topic => (
           <CardBody>
@@ -32,8 +44,7 @@ const Forum = ({
               <Link to={`/topic/${topic._id}`}>{topic.title}</Link>
             </CardTitle>
             <CardText>
-              Posté le <Moment format='DD/MM/YYYY'>{topic.date}</Moment> par{' '}
-              {topic.name}
+              Posté <Moment fromNow>{topic.date}</Moment> par {topic.name}
             </CardText>
           </CardBody>
         ))}

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_TOPICS, GET_TOPIC, TOPIC_ERROR } from './types';
+import { setAlert } from './alert';
+import { GET_TOPICS, GET_TOPIC, ADD_TOPIC, TOPIC_ERROR } from './types';
 
 // Get topics by forum ID
 export const getTopics = id => async dispatch => {
@@ -27,6 +28,33 @@ export const getTopic = id => async dispatch => {
       type: GET_TOPIC,
       payload: res.data
     });
+  } catch (err) {
+    dispatch({
+      type: TOPIC_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// Add topic
+export const addTopic = (forumId, formData, history) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.post(`/api/topics/${forumId}`, formData, config);
+
+    dispatch({
+      type: ADD_TOPIC,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Sujet ajouté !', 'success'));
+
+    history.push(`/forum/${forumId}`);
   } catch (err) {
     dispatch({
       type: TOPIC_ERROR,

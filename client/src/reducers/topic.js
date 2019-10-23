@@ -1,4 +1,9 @@
-import { GET_TOPICS, GET_TOPIC, TOPIC_ERROR } from '../actions/types';
+import {
+  GET_TOPICS,
+  GET_TOPIC,
+  ADD_TOPIC,
+  TOPIC_ERROR
+} from '../actions/types';
 
 const initialState = {
   topics: [],
@@ -22,6 +27,12 @@ export default function(state = initialState, action) {
         ...state,
         loading: false,
         topic: payload
+      };
+    case ADD_TOPIC:
+      return {
+        ...state,
+        topics: [payload, ...state.topics],
+        loading: false
       };
     case TOPIC_ERROR:
       return {

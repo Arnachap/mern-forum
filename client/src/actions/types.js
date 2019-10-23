@@ -15,3 +15,4 @@ export const SECTION_ERROR = 'SECTION_ERROR';
 export const GET_TOPICS = 'GET_TOPICS';
 export const TOPIC_ERROR = 'TOPIC_ERROR';
 export const GET_TOPIC = 'GET_TOPIC';
+export const ADD_TOPIC = 'ADD_TOPIC';

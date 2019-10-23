@@ -37,7 +37,9 @@ router.post('/:forum_id', auth, async (req, res) => {
 // @access   Public
 router.get('/forum/:forum_id', async (req, res) => {
   try {
-    const topics = await Topic.find({ forum: req.params.forum_id });
+    const topics = await Topic.find({ forum: req.params.forum_id }).sort({
+      date: -1
+    });
 
     res.json(topics);
   } catch (err) {
