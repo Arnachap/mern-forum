@@ -5,6 +5,7 @@ import { getTopic } from '../../actions/topic';
 import Moment from 'react-moment';
 
 import { Card, CardBody, CardText, Spinner } from 'reactstrap';
+import AddCommentForm from './AddCommentForm';
 
 const Topic = ({ getTopic, topic: { topic, loading }, match }) => {
   useEffect(() => {
@@ -21,7 +22,7 @@ const Topic = ({ getTopic, topic: { topic, loading }, match }) => {
         Posté par {topic.name}, <Moment fromNow>{topic.date}</Moment>
       </small>
 
-      <Card>
+      <Card className='mb-2'>
         <CardBody>
           <CardText>{topic.text}</CardText>
         </CardBody>
@@ -29,13 +30,15 @@ const Topic = ({ getTopic, topic: { topic, loading }, match }) => {
 
       {topic.comments.map(comment => {
         return (
-          <Card>
+          <Card className='mb-2'>
             <CardBody>
               <CardText>{comment.text}</CardText>
             </CardBody>
           </Card>
         );
       })}
+
+      <AddCommentForm topicId={topic._id} />
     </Fragment>
   );
 };

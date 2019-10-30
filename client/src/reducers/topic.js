@@ -2,6 +2,7 @@ import {
   GET_TOPICS,
   GET_TOPIC,
   ADD_TOPIC,
+  ADD_COMMENT,
   TOPIC_ERROR
 } from '../actions/types';
 
@@ -32,6 +33,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         topics: [payload, ...state.topics],
+        loading: false
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        topic: { ...state.topic, comments: payload },
         loading: false
       };
     case TOPIC_ERROR:

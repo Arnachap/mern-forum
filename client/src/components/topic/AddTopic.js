@@ -41,7 +41,7 @@ const AddTopic = ({ addTopic, match, history }) => {
         {/* TODO add wysiwyg -> Froala */}
         <FormGroup>
           <Input
-            type='text'
+            type='textarea'
             placeholder='Texte du sujet'
             name='text'
             value={text}

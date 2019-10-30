@@ -63,7 +63,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // @route    POST api/topics/comment/:id
-// @desc     Get topic by ID
+// @desc     Post a comment
 // @access   Private
 router.post('/comment/:id', auth, async (req, res) => {
   try {
@@ -76,7 +76,7 @@ router.post('/comment/:id', auth, async (req, res) => {
       user: req.user.id
     };
 
-    topic.comments.unshift(newComment);
+    topic.comments.push(newComment);
 
     await topic.save();
 
