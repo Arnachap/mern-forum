@@ -10,7 +10,10 @@ const Profile = ({ auth: { user, loading } }) => {
       {loading ? (
         <Spinner className='d-block m-auto' color='info' />
       ) : (
-        <h1>{user.name}</h1>
+        <div>
+          <h1>{user.name}</h1>
+          <img src={user.avatar} alt='' />
+        </div>
       )}
     </Fragment>
   );
