@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import {
   Collapse,
   Navbar,
@@ -15,7 +16,7 @@ import { logout } from '../../actions/auth';
 import LoginModal from '../modals/LoginModal';
 import RegisterModal from '../modals/RegisterModal';
 
-const Header = ({ auth: { isAuthenticated }, logout }) => {
+const Header = ({ auth: { isAuthenticated, user }, logout }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -47,6 +48,12 @@ const Header = ({ auth: { isAuthenticated }, logout }) => {
             <NavItem>
               <NavLink href='/'>Membres</NavLink>
             </NavItem>
+
+            {isAuthenticated ? (
+              <NavItem>
+                <NavLink href={`/user/${user._id}`}>{user.name}</NavLink>
+              </NavItem>
+            ) : null}
           </Nav>
           <div className='ml-auto'>
             <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

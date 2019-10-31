@@ -8,6 +8,7 @@ import Forums from './components/forums/Forums';
 import Forum from './components/forum/Forum';
 import Topic from './components/topic/Topic';
 import AddTopic from './components/topic/AddTopic';
+import Profile from './components/profile/Profile';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -35,6 +36,7 @@ const App = () => {
             <Route exact path='/forum/:id' component={Forum} />
             <Route exact path='/topic/:id' component={Topic} />
             <Route exact path='/new-topic/:id' component={AddTopic} />
+            <Route exact path='/user/:id' component={Profile} />
           </main>
         </Fragment>
       </Router>
