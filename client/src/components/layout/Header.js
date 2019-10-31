@@ -49,7 +49,7 @@ const Header = ({ auth: { isAuthenticated, user }, logout }) => {
               <NavLink href='/'>Membres</NavLink>
             </NavItem>
 
-            {isAuthenticated ? (
+            {isAuthenticated && user !== null ? (
               <NavItem>
                 <NavLink href={`/user/${user._id}`}>{user.name}</NavLink>
               </NavItem>
