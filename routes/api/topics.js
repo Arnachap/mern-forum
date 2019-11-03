@@ -20,6 +20,7 @@ router.post('/:forum_id', auth, async (req, res) => {
       text: req.body.text,
       forum: forum.id,
       name: user.name,
+      avatar: user.avatar,
       user: req.user.id
     });
 
@@ -73,7 +74,8 @@ router.post('/comment/:id', auth, async (req, res) => {
     const newComment = {
       text: req.body.text,
       name: user.name,
-      user: req.user.id
+      user: req.user.id,
+      avatar: user.avatar
     };
 
     topic.comments.push(newComment);

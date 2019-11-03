@@ -20,6 +20,10 @@ const TopicSchema = new mongoose.Schema({
   name: {
     type: String
   },
+  avatar: {
+    type: String,
+    default: '/assets/profile-pictures/default.png'
+  },
   comments: [
     {
       user: {
@@ -32,6 +36,10 @@ const TopicSchema = new mongoose.Schema({
       },
       name: {
         type: String
+      },
+      avatar: {
+        type: String,
+        default: '/assets/profile-pictures/default.png'
       },
       date: {
         type: Date,

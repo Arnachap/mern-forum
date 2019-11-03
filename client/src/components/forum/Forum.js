@@ -37,16 +37,24 @@ const Forum = ({
         <Button color='success'>Nouveau sujet</Button>
       </Link>
 
-      <Card className='my-3 '>
+      <Card className='my-3'>
         {topics.map(topic => (
-          <CardBody>
-            <CardTitle>
-              <Link to={`/topic/${topic._id}`}>{topic.title}</Link>
-            </CardTitle>
-            <CardText>
-              Posté <Moment fromNow>{topic.date}</Moment> par {topic.name}
-            </CardText>
-          </CardBody>
+          <div className='row'>
+            <div className='col-md-2'>
+              <img src={topic.avatar} className='card-img' alt='' />
+            </div>
+
+            <div className='col-md-10'>
+              <CardBody>
+                <CardTitle>
+                  <Link to={`/topic/${topic._id}`}>{topic.title}</Link>
+                </CardTitle>
+                <CardText>
+                  Posté <Moment fromNow>{topic.date}</Moment> par {topic.name}
+                </CardText>
+              </CardBody>
+            </div>
+          </div>
         ))}
       </Card>
     </Fragment>

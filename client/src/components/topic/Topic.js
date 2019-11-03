@@ -23,17 +23,33 @@ const Topic = ({ getTopic, topic: { topic, loading }, match }) => {
       </small>
 
       <Card className='mb-2'>
-        <CardBody>
-          <CardText>{topic.text}</CardText>
-        </CardBody>
+        <div className='row'>
+          <div className='col-md-2'>
+            <img src={topic.avatar} className='card-img' alt='' />
+          </div>
+
+          <div className='col-md-10'>
+            <CardBody>
+              <CardText>{topic.text}</CardText>
+            </CardBody>
+          </div>
+        </div>
       </Card>
 
       {topic.comments.map(comment => {
         return (
           <Card className='mb-2'>
-            <CardBody>
-              <CardText>{comment.text}</CardText>
-            </CardBody>
+            <div className='row'>
+              <div className='col-md-2'>
+                <img src={comment.avatar} className='card-img' alt='' />
+              </div>
+
+              <div className='col-md-10'>
+                <CardBody>
+                  <CardText>{comment.text}</CardText>
+                </CardBody>
+              </div>
+            </div>
           </Card>
         );
       })}
