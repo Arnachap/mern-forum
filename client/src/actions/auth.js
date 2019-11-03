@@ -7,7 +7,9 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  UPLOAD_AVATAR,
+  UPLOAD_ERROR
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -98,4 +100,29 @@ export const login = (email, password) => async dispatch => {
 // Logout
 export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
+};
+
+// Avatar upload
+export const uploadAvatar = formData => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  };
+
+  try {
+    const res = await axios.post('/api/users/avatar', formData, config);
+
+    dispatch({
+      type: UPLOAD_AVATAR,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Avatar modifié !', 'success'));
+  } catch (err) {
+    dispatch({
+      type: UPLOAD_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
 };

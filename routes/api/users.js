@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
@@ -87,5 +88,37 @@ router.post(
     }
   }
 );
+
+// @route   POST api/users/avatar
+// @desc    Upload user avatar
+// @access  Private
+router.post('/avatar', auth, async (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'Aucun fichier envoyé' });
+  }
+
+  try {
+    const file = req.files.file;
+
+    const user = await User.findById(req.user.id).select('-password');
+    user.avatar = `/assets/profile-pictures/${user.name}-${file.name}`;
+    await user.save();
+
+    file.mv(
+      `./client/public/assets/profile-pictures/${user.name}-${file.name}`,
+      err => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send(err);
+        }
+
+        res.json(user.avatar);
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;
